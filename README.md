@@ -4,7 +4,7 @@ Control your Home Assistant devices from the Omarchy bar. Click the icon for a
 dashboard of your favourite devices, or open the full device list and drive
 anything the REST API can reach.
 
-` 󰟐 ` → favourites dashboard → full device list → per-device controls
+`󰟐` → favourites dashboard → full device list → per-device controls
 
 ## Installation
 
