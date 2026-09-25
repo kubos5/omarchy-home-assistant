@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "romeo.home-assistant",
+  "name": "Home Assistant",
+  "version": "1.0.0",
+  "author": "romeo",
+  "license": "MIT",
+  "description": "Control your Home Assistant devices from the Omarchy bar: a favourites dashboard, the full device list, and per-device controls for lights, climate, locks, covers, media, cameras and more.",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Panel.qml"
+  },
+  "barWidget": {
+    "displayName": "Home Assistant",
+    "description": "Favourites dashboard, full device list, and per-domain controls for your Home Assistant instance.",
+    "category": "Home",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "url": "homeassistant.local:8123",
+      "favoritesSource": "manual",
+      "favoritesLabel": "favorite",
+      "favorites": [],
+      "openMode": "browser",
+      "refreshIntervalSec": 15,
+      "groupByArea": true,
+      "hideUnavailable": false,
+      "showCount": false
+    },
+    "schema": [
+      {
+        "key": "url",
+        "type": "string",
+        "label": "Home Assistant URL",
+        "description": "Host and port, or a full http(s) address. Example: homeassistant.local:8123",
+        "defaultValue": "homeassistant.local:8123"
+      },
+      {
+        "key": "favoritesSource",
+        "type": "enum",
+        "label": "Favourites come from",
+        "description": "\"manual\" uses the list you star inside the plugin. \"label\" reads a Home Assistant label instead — Home Assistant has no favourites of its own, so a label is its closest equivalent.",
+        "options": ["manual", "label"],
+        "defaultValue": "manual"
+      },
+      {
+        "key": "favoritesLabel",
+        "type": "string",
+        "label": "Favourites label",
+        "description": "Which Home Assistant label to read when favouritesSource is \"label\". Needs Home Assistant 2024.4 or newer.",
+        "defaultValue": "favorite"
+      },
+      {
+        "key": "favorites",
+        "type": "list",
+        "label": "Favourite entities",
+        "description": "Entity IDs shown on the dashboard when favouritesSource is \"manual\". Managed by the star on each row in the Devices tab.",
+        "defaultValue": []
+      },
+      {
+        "key": "openMode",
+        "type": "enum",
+        "label": "Open links",
+        "description": "\"browser\" opens Home Assistant in your default browser; \"webapp\" launches it through omarchy-launch-webapp as a standalone window.",
+        "options": ["browser", "webapp"],
+        "defaultValue": "browser"
+      },
+      {
+        "key": "refreshIntervalSec",
+        "type": "integer",
+        "label": "Refresh interval (seconds)",
+        "description": "How often to poll Home Assistant while the panel is closed. While it is open, polling tightens to at most 5 seconds.",
+        "min": 3,
+        "max": 3600,
+        "step": 1,
+        "defaultValue": 15
+      },
+      {
+        "key": "groupByArea",
+        "type": "boolean",
+        "label": "Group by area",
+        "description": "Split the device list into the areas defined in Home Assistant.",
+        "defaultValue": true
+      },
+      {
+        "key": "hideUnavailable",
+        "type": "boolean",
+        "label": "Hide unavailable devices",
+        "description": "Keep offline entities out of the Devices list.",
+        "defaultValue": false
+      },
+      {
+        "key": "showCount",
+        "type": "boolean",
+        "label": "Show count in the bar",
+        "description": "Draw the number of favourites that are on beside the bar icon.",
+        "defaultValue": false
+      }
+    ]
+  }
+}
